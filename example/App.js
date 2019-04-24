@@ -13,7 +13,8 @@ import { performAddition } from "react-native-jsi-calculator";
 type Props = {};
 export default class App extends Component<Props> {
   calc = () => {
-    performAddition(100, 100, r => alert(r));
+    performAddition(100, 100, r => console.log(r));
+    alert(global.RNJsiDemoLibrary.performAddition(20, 300));
   };
   render() {
     return (

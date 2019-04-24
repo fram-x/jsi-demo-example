@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1072305227072EC0001F3B4 /* JsiDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1072303227072EC0001F3B4 /* JsiDemo.cpp */; };
+		A10723082270736A0001F3B4 /* JsiDemoHostObjectBinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A10723062270736A0001F3B4 /* JsiDemoHostObjectBinding.cpp */; };
 		B3E7B58A1CC2AC0600A0062D /* RNJsiDemoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNJsiDemoLibrary.m */; };
 /* End PBXBuildFile section */
 
@@ -24,8 +26,12 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNJsiDemoLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNJsiDemoLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1072303227072EC0001F3B4 /* JsiDemo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JsiDemo.cpp; sourceTree = "<group>"; };
+		A1072304227072EC0001F3B4 /* JsiDemo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JsiDemo.h; sourceTree = "<group>"; };
+		A10723062270736A0001F3B4 /* JsiDemoHostObjectBinding.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JsiDemoHostObjectBinding.cpp; sourceTree = "<group>"; };
+		A10723072270736A0001F3B4 /* JsiDemoHostObjectBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JsiDemoHostObjectBinding.h; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNJsiDemoLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNJsiDemoLibrary.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* RNJsiDemoLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNJsiDemoLibrary.m; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* RNJsiDemoLibrary.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = RNJsiDemoLibrary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +56,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				A10723062270736A0001F3B4 /* JsiDemoHostObjectBinding.cpp */,
+				A10723072270736A0001F3B4 /* JsiDemoHostObjectBinding.h */,
+				A1072303227072EC0001F3B4 /* JsiDemo.cpp */,
+				A1072304227072EC0001F3B4 /* JsiDemo.h */,
 				B3E7B5881CC2AC0600A0062D /* RNJsiDemoLibrary.h */,
 				B3E7B5891CC2AC0600A0062D /* RNJsiDemoLibrary.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
@@ -95,6 +105,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -112,6 +123,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10723082270736A0001F3B4 /* JsiDemoHostObjectBinding.cpp in Sources */,
+				A1072305227072EC0001F3B4 /* JsiDemo.cpp in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNJsiDemoLibrary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,14 +216,27 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../example/node_modules/react-native/third-party/folly-2018.10.22.00",
+					"$(SRCROOT)/../../example/node_modules/react-native/third-party/boost_1_63_0",
+					"$(SRCROOT)/../../example/node_modules/react-native/third-party/glog-0.3.5/src",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_CFLAGS = (
+					"-DFOLLY_NO_CONFIG",
+					"-DFOLLY_MOBILE=1",
+					"-DFOLLY_USE_LIBCPP=1",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_NAME = RNJsiDemoLibrary;
 				SKIP_INSTALL = YES;
 			};
@@ -219,14 +245,27 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../example/node_modules/react-native/third-party/folly-2018.10.22.00",
+					"$(SRCROOT)/../../example/node_modules/react-native/third-party/boost_1_63_0",
+					"$(SRCROOT)/../../example/node_modules/react-native/third-party/glog-0.3.5/src",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_CFLAGS = (
+					"-DFOLLY_NO_CONFIG",
+					"-DFOLLY_MOBILE=1",
+					"-DFOLLY_USE_LIBCPP=1",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
 				PRODUCT_NAME = RNJsiDemoLibrary;
 				SKIP_INSTALL = YES;
 			};

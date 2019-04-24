@@ -9,7 +9,7 @@
       "program": "${workspaceRoot}/.vscode/launchReactNative.js",
       "type": "reactnative",
       "request": "attach",
-      "port": "9000",
+
       "sourceMaps": true,
       "outDir": "${workspaceRoot}/.vscode/.react"
     }
