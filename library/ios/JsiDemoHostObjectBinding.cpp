@@ -8,7 +8,7 @@ void JsiHostObjectBinding::install(
                           std::shared_ptr<JsiHostObjectBinding> binding) {
     auto testModuleName = "RNJsiDemoLibrary";
     auto object = facebook::jsi::Object::createFromHostObject(runtime, binding);
-    runtime.global().setProperty(runtime, testModuleName, std::move(object));
+    runtime.global().setProperty(runtime, testModuleName, std::move(object));    
 }
 
 JsiHostObjectBinding::JsiHostObjectBinding(std::unique_ptr<JsiDemo> demo)

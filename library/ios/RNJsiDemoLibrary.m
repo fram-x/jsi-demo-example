@@ -20,10 +20,11 @@ RCT_EXPORT_METHOD(initialize) {
 {
     [super setBridge:bridge];
     RCTCxxBridge *cxxBridge = (RCTCxxBridge *)bridge;
+    if(cxxBridge.runtime == NULL) return;
+    
     facebook::jsi::Runtime &runtime = *(facebook::jsi::Runtime *)cxxBridge.runtime;
     auto demo = std::make_unique<JsiDemo>();
     std::shared_ptr<JsiHostObjectBinding> demoBinding = std::make_shared<JsiHostObjectBinding>(std::move(demo));
-    
     JsiHostObjectBinding::install(runtime, demoBinding);
 }
 
